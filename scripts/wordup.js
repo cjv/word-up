@@ -34,9 +34,9 @@ function startGame() {
     model.currentAttempt = "";
     model.timer = startTimer();
 }
-
+    
 /*
- * Wraps things up
+ * Wraps things up 
  */
 function endGame() {
     stopTimer();
@@ -71,7 +71,7 @@ function addNewWordSubmission(word) {
  */
 function checkIfWordIsReal(word) {
 
-    // make an AJAX call to the Pearson API
+    // make an AJAX call to the Pearson API   
     $.ajax({
         // TODO 13 what should the url be?
         url: "www.todo13.com",
@@ -113,9 +113,9 @@ function render() {
     // update the score on the scoreboard
     $("#current-score").text(currentScore());
 
-    // TODO 2
+    // xxxTODO 2
     // Update the curent time remaining on the scoreboard.
-
+    $("#time-remaining").text(model.secondsRemaining);
 
     // if the game has not started yet, just hide the #game container and exit
     if (model.gameHasStarted == false) {
@@ -144,8 +144,8 @@ function render() {
 
 
     // Set the value of the textbox
-    $("#textbox").val(model.currentAttempt);
-    // TODO 3
+    $("#textbox").val(model.currentAttempt).focus();
+    // xxxTODO 3
     // Give focus to the textbox.
 
 
@@ -238,6 +238,10 @@ $(document).ready(function() {
         render();
     });
 
+    $("#textbox").on("input", function(evt) { 
+        model.currentAttempt = $("#textbox").val();
+        render();
+    });
     // TODO 6
     // Add another event handler with a callback function.
     // When the textbox content changes,
